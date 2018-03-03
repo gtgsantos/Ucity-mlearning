@@ -11805,7 +11805,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Resposta: </strong></p>
-<p>Este é um problema de classificação, pois os dados seguem um nível gradual de avaliação (no nosso caso, notas), entre notas  menores que levam a reprovação até chegar um nível superior e satisfatório de aprovação. Obtendo estes valores previamente, conseguimos balizar o aluno e saber se ele precisa de ajuda antes de ser reprovado.</p>
+<p>Este é um problema de classificação, pois através dos dados, busca-se analisar através de predição se o aluno está necessitando de auxílio ou não.</p>
 
 </div>
 </div>
@@ -11821,7 +11821,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Importar bibliotecas</span>
@@ -11833,6 +11833,8 @@ div#notebook {
 <span class="c1"># Ler os dados dos estudantes</span>
 <span class="n">student_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;student-data.csv&quot;</span><span class="p">)</span>
 <span class="c1">##print student_data</span>
+<span class="c1">#print student_data.describe()</span>
+
 
 <span class="k">print</span> <span class="s2">&quot;Os dados dos estudantes foram lidos com êxito!&quot;</span>
 </pre></div>
@@ -11878,7 +11880,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Calcule o número de estudante</span>
@@ -11946,7 +11948,7 @@ Taxa de graduação: 67.09%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Extraia as colunas dos atributo</span>
@@ -12031,7 +12033,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_features</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
@@ -12104,7 +12106,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Importe qualquer funcionalidade adicional de que você possa precisar aqui</span>
@@ -12120,7 +12122,8 @@ Feature values:
 <span class="c1"># TODO: Emabaralhe e distribua o conjunto de dados de acordo com o número de pontos de treinamento e teste abaixo</span>
 
 
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="n">num_train</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="n">num_train</span><span class="p">,</span> 
+                                                    <span class="n">random_state</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y_all</span><span class="p">)</span>
 
 
 <span class="c1"># Mostre o resultado da distribuição</span>
@@ -12144,6 +12147,18 @@ Feature values:
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>O conjunto de treinamento tem 300 amostras.
 O conjunto de teste tem 95 amostras.
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/home/gtgsantos/anaconda2/lib/python2.7/site-packages/sklearn/model_selection/_split.py:2010: FutureWarning: From version 0.21, test_size will always complement train_size unless both are specified.
+  FutureWarning)
 </pre>
 </div>
 </div>
@@ -12195,37 +12210,39 @@ O conjunto de teste tem 95 amostras.
 instância particular de um dicionário e as relativas frequências de todos os termos provêm informação suficiente para inferir a classe pertencente."
 BONACCORSO, G. (2017) Machine Learning Algorithms(página 120) , Packt</p>
 <p>Resumindo: Tratamento de textos (e-mails). :)</p>
-<h4 id="Quais-s&#227;o-as-vantagens-do-modelo;-quando-ele-tem-um-desempenho-melhor?">Quais s&#227;o as vantagens do modelo; quando ele tem um desempenho melhor?<a class="anchor-link" href="#Quais-s&#227;o-as-vantagens-do-modelo;-quando-ele-tem-um-desempenho-melhor?">&#182;</a></h4><ul>
-<li>Ele é bem rapido</li>
+<h4 id="Quais-sao-as-vantagens-do-modelo;-quando-ele-tem-um-desempenho-melhor?">Quais sao as vantagens do modelo; quando ele tem um desempenho melhor?<a class="anchor-link" href="#Quais-sao-as-vantagens-do-modelo;-quando-ele-tem-um-desempenho-melhor?">&#182;</a></h4><ul>
+<li>Ele e bem rapido</li>
 <li>Facil de ser treinado</li>
 </ul>
-<h4 id="Quais-s&#227;o-as-desvantagens-do-modelo,-quando-ele-tem-desempenho-pior?">Quais s&#227;o as desvantagens do modelo, quando ele tem desempenho pior?<a class="anchor-link" href="#Quais-s&#227;o-as-desvantagens-do-modelo,-quando-ele-tem-desempenho-pior?">&#182;</a></h4><ul>
-<li>Ele não é tão assertivo quando tem que fazer predições baseadas em outras predições (em cadeia).</li>
+<h4 id="Quais-sao-as-desvantagens-do-modelo,-quando-ele-tem-desempenho-pior?">Quais sao as desvantagens do modelo, quando ele tem desempenho pior?<a class="anchor-link" href="#Quais-sao-as-desvantagens-do-modelo,-quando-ele-tem-desempenho-pior?">&#182;</a></h4><ul>
+<li>Ele não é eficaz quando é necessário fazer predições utilizando 2 critérios. 
+Ex.: Ao utiliza-lo em um sistema de busca, caso um usuário procure por peixe boi, o modelo irá retornar registros sobre peixes e sobre bois, não sobre peixes-boi.</li>
 </ul>
 <h4 id="O-que-faz-desse-modelo-um-bom-candidato-para-o-problema,-considerando-o-que-voce-sabe-sobre-os-dados?">O que faz desse modelo um bom candidato para o problema, considerando o que voce sabe sobre os dados?<a class="anchor-link" href="#O-que-faz-desse-modelo-um-bom-candidato-para-o-problema,-considerando-o-que-voce-sabe-sobre-os-dados?">&#182;</a></h4><ul>
-<li>Ele possui um modelo de execução rápida, e de fácil treinamento, podendo ser utilizado com uma quantidade baixa de dados (como o nosso caso, que somente possuimos 300 registros).</li>
-<li>As caracteristicas dos registros não são inter-dependentes, podendo ser analisadas independentemente (o algoritmo de bayes funciona melhor desta forma).</li>
+<li>Ele possui um modelo de execucao rapida, e de facil treinamento, podendo ser utilizado com uma quantidade baixa de dados (como o nosso caso, que somente possuimos 300 registros).</li>
+<li>As caracteristicas dos registros nao sao inter-dependentes, podendo ser analisadas independentemente (o algoritmo de bayes funciona melhor desta forma).</li>
 </ul>
 <h3 id="KNN-(K-Vizinhos-mais-proximos)">KNN (K Vizinhos mais proximos)<a class="anchor-link" href="#KNN-(K-Vizinhos-mais-proximos)">&#182;</a></h3><p>O K-Nearest neighbors e um algoritmo bem utilizado em sistemas de recomendaçao (CRM - Customer Relationship Management), onde ele pode sugerir um novo produto ou servico a partir de escolhas feitas previamente pelo usuario do sistema (ex.: e-commerce).</p>
-<h4 id="Quais-s&#227;o-as-vantagens-do-modelo;-quando-ele-tem-um-desempenho-melhor?">Quais s&#227;o as vantagens do modelo; quando ele tem um desempenho melhor?<a class="anchor-link" href="#Quais-s&#227;o-as-vantagens-do-modelo;-quando-ele-tem-um-desempenho-melhor?">&#182;</a></h4><ul>
-<li>Ele é simples e fácil de ser treinado</li>
+<h4 id="Quais-sao-as-vantagens-do-modelo;-quando-ele-tem-um-desempenho-melhor?">Quais sao as vantagens do modelo; quando ele tem um desempenho melhor?<a class="anchor-link" href="#Quais-sao-as-vantagens-do-modelo;-quando-ele-tem-um-desempenho-melhor?">&#182;</a></h4><ul>
+<li>Ele é simples;</li>
+<li>Não necessita de treinamento;</li>
 <li>Ele é eficiente em pequenas quantidades de dados</li>
 </ul>
-<h4 id="Quais-s&#227;o-as-desvantagens-do-modelo,-quando-ele-tem-um-desempenho-pior?">Quais s&#227;o as desvantagens do modelo, quando ele tem um desempenho pior?<a class="anchor-link" href="#Quais-s&#227;o-as-desvantagens-do-modelo,-quando-ele-tem-um-desempenho-pior?">&#182;</a></h4><ul>
-<li>Ele é um pouco lento</li>
-<li>Não é tao eficiente para grandes quantidades de dados</li>
+<h4 id="Quais-sao-as-desvantagens-do-modelo,-quando-ele-tem-um-desempenho-pior?">Quais sao as desvantagens do modelo, quando ele tem um desempenho pior?<a class="anchor-link" href="#Quais-sao-as-desvantagens-do-modelo,-quando-ele-tem-um-desempenho-pior?">&#182;</a></h4><ul>
+<li>Ele é um pouco lento na predição</li>
+<li>Nao é tao eficiente para grandes quantidades de dados</li>
 </ul>
 <h4 id="O-que-faz-desse-modelo-um-bom-candidato-para-o-problema,-considerando-o-que-voce-sabe-sobre-os-dados?">O que faz desse modelo um bom candidato para o problema, considerando o que voce sabe sobre os dados?<a class="anchor-link" href="#O-que-faz-desse-modelo-um-bom-candidato-para-o-problema,-considerando-o-que-voce-sabe-sobre-os-dados?">&#182;</a></h4><ul>
 <li>O problema apresentado possui poucos dados a serem validados</li>
 </ul>
-<h3 id="SVM-(Support-Vector-Machines)">SVM (Support Vector Machines)<a class="anchor-link" href="#SVM-(Support-Vector-Machines)">&#182;</a></h3><p>O SVM é um algoritmo utilizado em sistemas de reconhecimento de textos manuscritos.</p>
-<h4 id="Quais-s&#227;o-as-vantagens-do-modelo;-quando-ele-tem-um-desempenho-melhor?">Quais s&#227;o as vantagens do modelo; quando ele tem um desempenho melhor?<a class="anchor-link" href="#Quais-s&#227;o-as-vantagens-do-modelo;-quando-ele-tem-um-desempenho-melhor?">&#182;</a></h4><ul>
+<h3 id="SVM-(Support-Vector-Machines)">SVM (Support Vector Machines)<a class="anchor-link" href="#SVM-(Support-Vector-Machines)">&#182;</a></h3><p>O SVM e um algoritmo utilizado em sistemas de reconhecimento de textos manuscritos.</p>
+<h4 id="Quais-sao-as-vantagens-do-modelo;-quando-ele-tem-um-desempenho-melhor?">Quais sao as vantagens do modelo; quando ele tem um desempenho melhor?<a class="anchor-link" href="#Quais-sao-as-vantagens-do-modelo;-quando-ele-tem-um-desempenho-melhor?">&#182;</a></h4><ul>
 <li>Bem preciso</li>
-<li>Consegue ter uma boa performance em cenários lineares e não-lineares</li>
+<li>Consegue ter uma boa performance em cenarios lineares e nao-lineares</li>
 </ul>
-<h4 id="Quais-s&#227;o-as-desvantagens-do-modelo,-quando-ele-tem-um-desempenho-pior?">Quais s&#227;o as desvantagens do modelo, quando ele tem um desempenho pior?<a class="anchor-link" href="#Quais-s&#227;o-as-desvantagens-do-modelo,-quando-ele-tem-um-desempenho-pior?">&#182;</a></h4><ul>
-<li>Não é tão eficiente com grandes quantidades de dados</li>
-<li>Não é tão eficiente com dados com muito ruido</li>
+<h4 id="Quais-sao-as-desvantagens-do-modelo,-quando-ele-tem-um-desempenho-pior?">Quais sao as desvantagens do modelo, quando ele tem um desempenho pior?<a class="anchor-link" href="#Quais-sao-as-desvantagens-do-modelo,-quando-ele-tem-um-desempenho-pior?">&#182;</a></h4><ul>
+<li>Nao e tao eficiente com grandes quantidades de dados</li>
+<li>Nao e tao eficiente com dados com muito ruido</li>
 </ul>
 <h4 id="O-que-faz-desse-modelo-um-bom-candidato-para-o-problema,-considerando-o-que-voce-sabe-sobre-os-dados?">O que faz desse modelo um bom candidato para o problema, considerando o que voce sabe sobre os dados?<a class="anchor-link" href="#O-que-faz-desse-modelo-um-bom-candidato-para-o-problema,-considerando-o-que-voce-sabe-sobre-os-dados?">&#182;</a></h4><ul>
 <li>Por causa da baixa quantidade de dados a serem analisados, e pelo baixo ruido apresentado nos dados.</li>
@@ -12253,7 +12270,7 @@ BONACCORSO, G. (2017) Machine Learning Algorithms(página 120) , Packt</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">):</span>
@@ -12325,7 +12342,7 @@ BONACCORSO, G. (2017) Machine Learning Algorithms(página 120) , Packt</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Importe os três modelos de aprendizagem supervisionada do sklearn</span>
@@ -12352,31 +12369,41 @@ BONACCORSO, G. (2017) Machine Learning Algorithms(página 120) , Packt</p>
 <span class="n">clf_C</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">()</span>
 
 <span class="c1"># TODO: Configure os tamanho dos conjuntos de treinamento</span>
-<span class="n">X_train_100</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">y_train_100</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="c1">#codigo velho</span>
 
-<span class="n">X_train_200</span> <span class="o">=</span> <span class="mi">200</span>
-<span class="n">y_train_200</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="c1">#X_train_100 = 100</span>
+<span class="c1">#y_train_100 = 100</span>
 
-<span class="n">X_train_300</span> <span class="o">=</span> <span class="mi">300</span>
-<span class="n">y_train_300</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="c1">#X_train_200 = 200</span>
+<span class="c1">#y_train_200 = 200</span>
 
-<span class="k">def</span> <span class="nf">predicao</span><span class="p">(</span><span class="n">classificador</span><span class="p">):</span>
-    <span class="n">train_predict</span><span class="p">(</span><span class="n">classificador</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[:</span><span class="n">X_train_100</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[:</span><span class="n">y_train_100</span><span class="p">],</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
-    <span class="n">train_predict</span><span class="p">(</span><span class="n">classificador</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[:</span><span class="n">X_train_200</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[:</span><span class="n">y_train_200</span><span class="p">],</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
-    <span class="n">train_predict</span><span class="p">(</span><span class="n">classificador</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[:</span><span class="n">X_train_300</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[:</span><span class="n">y_train_300</span><span class="p">],</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;@@@@&quot;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+<span class="c1">#X_train_300 = 300</span>
+<span class="c1">#y_train_300 = 300</span>
+
+
+<span class="k">for</span> <span class="n">clf</span> <span class="ow">in</span> <span class="p">[</span><span class="n">clf_A</span><span class="p">,</span> <span class="n">clf_B</span><span class="p">,</span> <span class="n">clf_C</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">size</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">]:</span>
+        <span class="n">train_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[:</span><span class="n">size</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[:</span><span class="n">size</span><span class="p">],</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>        
+    <span class="k">print</span> <span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">80</span> <span class="c1"># imprime linha</span>
+
+
+<span class="c1">#  codigo velho</span>
+<span class="c1">#def predicao(classificador):</span>
+<span class="c1">#    train_predict(classificador, X_train[:X_train_100], y_train[:y_train_100], X_test, y_test)</span>
+<span class="c1">#    print(&quot;-&quot;)</span>
+<span class="c1">#    train_predict(classificador, X_train[:X_train_200], y_train[:y_train_200], X_test, y_test)</span>
+<span class="c1">#    print(&quot;-&quot;)</span>
+<span class="c1">#    train_predict(classificador, X_train[:X_train_300], y_train[:y_train_300], X_test, y_test)</span>
+<span class="c1">#    print(&quot;@@@@&quot;)</span>
+<span class="c1">#    print(&quot; &quot;)</span>
     
-<span class="n">predicao</span><span class="p">(</span><span class="n">clf_A</span><span class="p">)</span>
-<span class="n">predicao</span><span class="p">(</span><span class="n">clf_B</span><span class="p">)</span>
-<span class="n">predicao</span><span class="p">(</span><span class="n">clf_C</span><span class="p">)</span>
+<span class="c1">#predicao(clf_A)</span>
+<span class="c1">#predicao(clf_B)</span>
+<span class="c1">#predicao(clf_C)</span>
 
 
 <span class="c1"># TODO: Executar a função &#39;train_predict&#39; para cada classificador e cada tamanho de conjunto de treinamento</span>
-<span class="c1"># train_predict(clf, X_train, y_train, X_test, y_test)</span>
+<span class="c1">#train_predict(clf, X_train, y_train, X_test, y_test)</span>
 </pre></div>
 
 </div>
@@ -12394,71 +12421,62 @@ BONACCORSO, G. (2017) Machine Learning Algorithms(página 120) , Packt</p>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Treinando um GaussianNB com 100 pontos de treinamento. . .
-O modelo foi treinado em 0.0016 segundos
-As previsões foram feitas em 0.0005 segundos.
-Pontuação F1 para o conjunto de treino: 0.8971.
-As previsões foram feitas em 0.0005 segundos.
-Pontuação F1 para o conjunto de teste: 0.7206.
--
-Treinando um GaussianNB com 200 pontos de treinamento. . .
-O modelo foi treinado em 0.0012 segundos
+O modelo foi treinado em 0.0020 segundos
 As previsões foram feitas em 0.0006 segundos.
-Pontuação F1 para o conjunto de treino: 0.8374.
-As previsões foram feitas em 0.0005 segundos.
-Pontuação F1 para o conjunto de teste: 0.7206.
--
-Treinando um GaussianNB com 300 pontos de treinamento. . .
-O modelo foi treinado em 0.0022 segundos
-As previsões foram feitas em 0.0009 segundos.
-Pontuação F1 para o conjunto de treino: 0.7931.
-As previsões foram feitas em 0.0007 segundos.
-Pontuação F1 para o conjunto de teste: 0.7164.
-@@@@
- 
-Treinando um KNeighborsClassifier com 100 pontos de treinamento. . .
+Pontuação F1 para o conjunto de treino: 0.7863.
+As previsões foram feitas em 0.0004 segundos.
+Pontuação F1 para o conjunto de teste: 0.5893.
+Treinando um GaussianNB com 200 pontos de treinamento. . .
 O modelo foi treinado em 0.0013 segundos
-As previsões foram feitas em 0.0013 segundos.
-Pontuação F1 para o conjunto de treino: 0.8378.
-As previsões foram feitas em 0.0012 segundos.
-Pontuação F1 para o conjunto de teste: 0.7832.
--
+As previsões foram feitas em 0.0005 segundos.
+Pontuação F1 para o conjunto de treino: 0.8031.
+As previsões foram feitas em 0.0004 segundos.
+Pontuação F1 para o conjunto de teste: 0.6452.
+Treinando um GaussianNB com 300 pontos de treinamento. . .
+O modelo foi treinado em 0.0013 segundos
+As previsões foram feitas em 0.0006 segundos.
+Pontuação F1 para o conjunto de treino: 0.8098.
+As previsões foram feitas em 0.0006 segundos.
+Pontuação F1 para o conjunto de teste: 0.7087.
+================================================================================
+Treinando um KNeighborsClassifier com 100 pontos de treinamento. . .
+O modelo foi treinado em 0.0006 segundos
+As previsões foram feitas em 0.0014 segundos.
+Pontuação F1 para o conjunto de treino: 0.7903.
+As previsões foram feitas em 0.0014 segundos.
+Pontuação F1 para o conjunto de teste: 0.7597.
 Treinando um KNeighborsClassifier com 200 pontos de treinamento. . .
-O modelo foi treinado em 0.0008 segundos
+O modelo foi treinado em 0.0007 segundos
 As previsões foram feitas em 0.0031 segundos.
-Pontuação F1 para o conjunto de treino: 0.8733.
+Pontuação F1 para o conjunto de treino: 0.8782.
 As previsões foram feitas em 0.0018 segundos.
-Pontuação F1 para o conjunto de teste: 0.8261.
--
+Pontuação F1 para o conjunto de teste: 0.7727.
 Treinando um KNeighborsClassifier com 300 pontos de treinamento. . .
 O modelo foi treinado em 0.0010 segundos
-As previsões foram feitas em 0.0061 segundos.
-Pontuação F1 para o conjunto de treino: 0.8606.
-As previsões foram feitas em 0.0025 segundos.
-Pontuação F1 para o conjunto de teste: 0.8116.
-@@@@
- 
+As previsões foram feitas em 0.0067 segundos.
+Pontuação F1 para o conjunto de treino: 0.8873.
+As previsões foram feitas em 0.0027 segundos.
+Pontuação F1 para o conjunto de teste: 0.7761.
+================================================================================
 Treinando um SVC com 100 pontos de treinamento. . .
-O modelo foi treinado em 0.0016 segundos
-As previsões foram feitas em 0.0010 segundos.
-Pontuação F1 para o conjunto de treino: 0.8375.
-As previsões foram feitas em 0.0010 segundos.
-Pontuação F1 para o conjunto de teste: 0.8606.
--
+O modelo foi treinado em 0.0017 segundos
+As previsões foram feitas em 0.0011 segundos.
+Pontuação F1 para o conjunto de treino: 0.8310.
+As previsões foram feitas em 0.0011 segundos.
+Pontuação F1 para o conjunto de teste: 0.8054.
 Treinando um SVC com 200 pontos de treinamento. . .
 O modelo foi treinado em 0.0038 segundos
-As previsões foram feitas em 0.0029 segundos.
-Pontuação F1 para o conjunto de treino: 0.8562.
-As previsões foram feitas em 0.0028 segundos.
-Pontuação F1 para o conjunto de teste: 0.8625.
--
+As previsões foram feitas em 0.0040 segundos.
+Pontuação F1 para o conjunto de treino: 0.8873.
+As previsões foram feitas em 0.0023 segundos.
+Pontuação F1 para o conjunto de teste: 0.7482.
 Treinando um SVC com 300 pontos de treinamento. . .
-O modelo foi treinado em 0.0107 segundos
-As previsões foram feitas em 0.0059 segundos.
-Pontuação F1 para o conjunto de treino: 0.8682.
-As previsões foram feitas em 0.0021 segundos.
-Pontuação F1 para o conjunto de teste: 0.8322.
-@@@@
- 
+O modelo foi treinado em 0.0093 segundos
+As previsões foram feitas em 0.0057 segundos.
+Pontuação F1 para o conjunto de treino: 0.8709.
+As previsões foram feitas em 0.0020 segundos.
+Pontuação F1 para o conjunto de teste: 0.7891.
+================================================================================
 </pre>
 </div>
 </div>
@@ -12608,7 +12626,7 @@ Pontuação F1 para o conjunto de teste: 0.8322.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Resposta: </strong> Apesar de o modelo KNN ser mais rápido que o Naive Bayes e várias vezes mais rapido que o SVM, o tempo de treinamento (&lt; 1 seg) de todos chega a ser irrisório para a quantidade maxima de dados apresentados, que é muito pouca(300), logo, irei desconsiderá-lo para o nosso exemplo. Levando em consideração somente pontuação do teste, o modelo mais eficiente foi o SVM (Support Vector Machine), pois obteve a maior pontuacao no teste.</p>
+<p><strong>Resposta: </strong> Apesar de o modelo KNN ser mais rapido que o Naive Bayes e varias vezes mais rapido que o SVM, o tempo de treinamento (&lt; 1 seg) de todos chega a ser irrisorio para a quantidade maxima de dados apresentados, que e muito pouca(300), logo, irei desconsidera-lo para o nosso exemplo. Levando em consideracao somente pontuacao do teste, o modelo mais eficiente foi o SVM (Support Vector Machine), pois obteve a maior pontuacao no teste.</p>
 
 </div>
 </div>
@@ -12627,12 +12645,12 @@ Pontuação F1 para o conjunto de teste: 0.8322.
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Resposta: </strong></p>
-<p>Apos uma breve analise, cheguei a conclusão que o melhor modelo a ser utilizado e o de SVM (support vector machine). Eis o porque:</p>
-<p>O modelo trabalha com separação de grupos de "sim" e "não", no nosso caso, precisa e não-precisa(de intervenção). 
-Para ele saber em qual grupo o aluno se encontra, o modelo utiliza algumas informações sobre cada aluno, como média, assiduidade e notas de projetos.
+<p>Após uma breve análise, cheguei a conclusão que o melhor modelo a ser utilizado e o de SVM (support vector machine). Eis o porque:</p>
+<p>O modelo trabalha com separação de grupos de sim e não, no nosso caso, precisa e não-precisa(de intervencao). 
+Para ele saber em qual grupo o aluno se encontra, o modelo utiliza algumas informacoes sobre cada aluno, como media, assiduidade e notas de projetos.
 A partir de cada um desses valores de cada aluno, o modelo valida e ve em qual grupo o aluno melhor se enquadra.</p>
-<p>Depois de fazer este processo com vários alunos, o modelo vai apresentar 2 grupos separados por uma linha, que é chamada de linha de classificação, onde de um lado estao os que precisam de intervenção e outro, os que não-precisam.</p>
-<p>E Quando um novo aluno chegar, estes grupos já vão estar tão bem definidos que o novo aluno, a partir das informações dele, sera categorizado em um dos dois grupos.</p>
+<p>Depois de fazer este processo com varios alunos, o modelo vai apresentar 2 grupos separados por uma linha, que e chamada de linha de classificacao, onde de um lado estao os que precisam de intervencao e outro, os que nao-precisam.</p>
+<p>E Quando um novo aluno chegar, estes grupos ja vao estar tao bem definidos que o novo aluno, a partir das informacoes dele, sera categorizado em um dos dois grupos.</p>
 <p>obs: Os alunos sao vistos pelo modelo como os dados, e o novo aluno, como uma predição.</p>
 
 </div>
@@ -12663,7 +12681,7 @@ A partir de cada um desses valores de cada aluno, o modelo valida e ve em qual g
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Importe &#39;GridSearchCV&#39; e &#39;make_scorer&#39;</span>
@@ -12709,10 +12727,10 @@ A partir de cada um desses valores de cada aluno, o modelo valida e ve em qual g
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>As previsões foram feitas em 0.0073 segundos.
+<pre>As previsões foram feitas em 0.0072 segundos.
 O modelo calibrado tem F1 de 1.0000 no conjunto de treinamento.
-As previsões foram feitas em 0.0025 segundos.
-O modelo calibrado tem F1 de 0.8554 no conjunto de teste.
+As previsões foram feitas em 0.0026 segundos.
+O modelo calibrado tem F1 de 0.8050 no conjunto de teste.
 </pre>
 </div>
 </div>
@@ -12743,7 +12761,7 @@ O modelo calibrado tem F1 de 0.8554 no conjunto de teste.
 <li>f1 treinamento: 1.000</li>
 <li>f1 teste: 0.8050</li>
 </ul>
-<h4 id="Em-compara&#231;&#227;o-com-o-f1-nao-calibrado-com-o-calibrado,-na-pontuacao-de-teste,-ap&#243;s-a-calibra&#231;&#227;o,-ele-subiu-o-f1-para-uma-espantosa-pontua&#231;&#227;o-de-1,-mostrando-que-o-modelo-performou-absolutamente-bem.-Entretanto,-a-pontua&#231;&#227;o-de-teste-somente-subiu-um-pouco,-de-0.7862-para-0.8050,-o-que-pode-ser-considerado-que-ela-teve-uma-leve-melhora-em-relacao-a-um-possivel-overfitting,-por&#233;m-ainda-n&#227;o-esta-satisfat&#243;ria.">Em compara&#231;&#227;o com o f1 nao calibrado com o calibrado, na pontuacao de teste, ap&#243;s a calibra&#231;&#227;o, ele subiu o f1 para uma espantosa pontua&#231;&#227;o de 1, mostrando que o modelo performou absolutamente bem. Entretanto, a pontua&#231;&#227;o de teste somente subiu um pouco, de 0.7862 para 0.8050, o que pode ser considerado que ela teve uma leve melhora em relacao a um possivel overfitting, por&#233;m ainda n&#227;o esta satisfat&#243;ria.<a class="anchor-link" href="#Em-compara&#231;&#227;o-com-o-f1-nao-calibrado-com-o-calibrado,-na-pontuacao-de-teste,-ap&#243;s-a-calibra&#231;&#227;o,-ele-subiu-o-f1-para-uma-espantosa-pontua&#231;&#227;o-de-1,-mostrando-que-o-modelo-performou-absolutamente-bem.-Entretanto,-a-pontua&#231;&#227;o-de-teste-somente-subiu-um-pouco,-de-0.7862-para-0.8050,-o-que-pode-ser-considerado-que-ela-teve-uma-leve-melhora-em-relacao-a-um-possivel-overfitting,-por&#233;m-ainda-n&#227;o-esta-satisfat&#243;ria.">&#182;</a></h4>
+<h4 id="Em-compara&#231;ao-com-o-f1-nao-calibrado-com-o-calibrado,-na-pontuacao-de-teste,-apos-a-calibracao,-ele-subiu-o-f1-para-uma-espantosa-pontuacao-de-1,-mostrando-que-o-modelo-performou-absolutamente-bem.-Entretanto,-a-pontuacao-de-teste-somente-subiu-um-pouco,-de-0.7862-para-0.8050,-o-que-pode-ser-considerado-que-ela-teve-uma-leve-melhora-em-relacao-a-um-possivel-overfitting,-porem-ainda-nao-esta-satisfatoria.">Em compara&#231;ao com o f1 nao calibrado com o calibrado, na pontuacao de teste, apos a calibracao, ele subiu o f1 para uma espantosa pontuacao de 1, mostrando que o modelo performou absolutamente bem. Entretanto, a pontuacao de teste somente subiu um pouco, de 0.7862 para 0.8050, o que pode ser considerado que ela teve uma leve melhora em relacao a um possivel overfitting, porem ainda nao esta satisfatoria.<a class="anchor-link" href="#Em-compara&#231;ao-com-o-f1-nao-calibrado-com-o-calibrado,-na-pontuacao-de-teste,-apos-a-calibracao,-ele-subiu-o-f1-para-uma-espantosa-pontuacao-de-1,-mostrando-que-o-modelo-performou-absolutamente-bem.-Entretanto,-a-pontuacao-de-teste-somente-subiu-um-pouco,-de-0.7862-para-0.8050,-o-que-pode-ser-considerado-que-ela-teve-uma-leve-melhora-em-relacao-a-um-possivel-overfitting,-porem-ainda-nao-esta-satisfatoria.">&#182;</a></h4>
 </div>
 </div>
 </div>
