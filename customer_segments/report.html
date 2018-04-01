@@ -11804,7 +11804,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Importe as bibliotecas necessárias para este projeto</span>
@@ -11860,7 +11860,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[261]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Mostre a descrição do conjunto de dados</span>
@@ -12003,7 +12003,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Selecione três índices de sua escolha que você gostaria de obter como amostra do conjunto de dados</span>
@@ -12290,13 +12290,18 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[166]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Fazer uma cópia do DataFrame utilizando a função &#39;drop&#39; para soltar o atributo dado</span>
 <span class="c1">#Fresh 	Milk 	Grocery 	Frozen 	Detergents_Paper 	Delicatessen</span>
 <span class="n">atributo_selecionado</span> <span class="o">=</span> <span class="s1">&#39;Grocery&#39;</span>
+
+
+
 <span class="n">new_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">atributo_selecionado</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1">#new_data = data</span>
+
 <span class="c1">#print new_data</span>
 
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
@@ -12330,7 +12335,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>0.653565713624
+<pre>0.685426439043
 </pre>
 </div>
 </div>
@@ -12356,8 +12361,8 @@ div#notebook {
 <p><strong>Resposta:</strong></p>
 <ul>
 <li>Eu tentei prever a coluna 'Grocery';</li>
-<li>A pontuação foi 0.653565713624;</li>
-<li>Sim, este atributo representa a parte de mercearia, produtos como feijão, arroz, etc, que constituem a maior parte de uma compra padrão.</li>
+<li>A pontuação foi 0.685426439043;</li>
+<li>Não, pois o score alcançado no modelo de testes acima alcançou um valor satisfatório, demonstrando que remover a coluna Grocery do conjunto de dados não tem tanta significância.</li>
 </ul>
 
 </div>
@@ -14166,11 +14171,11 @@ RU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Resposta:</strong></p>
 <ol>
-<li><p>: Sim, existem pares de atributos com grau de correlação, um que eu reparei foi o de grocery e milk.</p>
+<li><p>: Sim, existem pares de atributos com alto grau de correlação, um que eu reparei foi o de Grocery e Detergents_Paper. Em contrapartida, o atributo Fresh não possui correlação com nenhum outro atributo.</p>
 </li>
-<li><p>: Sim, ele confirma a relevância do atributo Grocery que eu escolhi na questão anterior.</p>
+<li><p>: Sim, ele confirma a irrelevância do atributo Grocery que eu escolhi na questão anterior.</p>
 </li>
-<li><p>: Os dados não possuem uma distribuição normal, eles mostram um agrupamento elevado quando os valores são baixos e diminuem quando os valores aumentam.</p>
+<li><p>: A maioria dos dados possuem uma inclinação positiva, eles mostram um agrupamento elevado quando os valores são baixos e diminuem quando os valores aumentam.</p>
 </li>
 </ol>
 
@@ -21608,10 +21613,26 @@ Sample point 2 predicted to be in Cluster 0
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Resposta:</strong></p>
-<p>De acordo com a minha análise na questão 9, não seria prudente realizar uma mudança dessas no segmento 1, pois vimos que eles adquirem bastente alimentos frescos, e o restante em um volume reduzido, logo, entregar produtos frescos em apenas 3 dias na semana irá causar um descontentamento.</p>
-<p>Porém no segmento 0, de acordo com o perfil de consumo, podemos fazer uma tentativa de mudança do serviço.
+<p>De acordo com a minha análise na questão 9, o segmento 1 poderá ser mais resistente a uma redução de dias, pois vimos que eles adquirem bastante alimentos frescos e o restante em um volume reduzido, logo, entregar produtos frescos em apenas 3 dias na semana irá causar um descontentamento.</p>
+<p>Porém no segmento 0, de acordo com o perfil de consumo, não sentirá tanto o impacto na mudança do serviço.</p>
+<p>Porém, para minimizar o transtorno e o risco inerentes à uma mudança, seria prudente realizarmos testes nos segmentos.
 Levando em consideração o método de Testes A/B, o distribuidor de atacado pode separar uma pequena parcela de seus clientes como um grupo de testes(ex.: 10%), deixando a grande maioria(90%) restante como o grupo de controle, ou seja, intocado.</p>
-<p>Após certo período, procuraria obter algum retorno com os clientes do grupo de testes, se eles acharam interessante a mudança. Caso positivo, ampliaria a alteração para todo o segmento.</p>
+<p>No final, assim ficará a divisão:</p>
+<ul>
+<li>Segmento 0:<ul>
+<li>testes: 10%</li>
+<li>Controle: 90%</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Segmento 1:<ul>
+<li>testes: 10%</li>
+<li>Controle: 90%</li>
+</ul>
+</li>
+</ul>
+<p>Após certo período, procuraria obter algum retorno com os clientes do grupo de testes de cada segmento, se eles acharam interessante a mudança. Caso positivo, ampliaria a alteração para todo o segmento.</p>
 
 </div>
 </div>
