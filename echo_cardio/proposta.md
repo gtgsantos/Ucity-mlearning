@@ -36,7 +36,7 @@ Dentre os modelos, utilizarei os algoritmos de:
 - K-N Neighbors 
 - Naive bayes
 
-Também utilizarei o modelo de Gradiente descendente (GridSeach) para tuning do modelo escolhido.
+Também utilizarei o algoritmo de GridSeach para tuning do modelo escolhido.
 
 ### Métricas de avaliação
 
