@@ -9,10 +9,10 @@ Guilherme Thiago Gomes dos Santos
 ### Histórico do assunto
 Desde o meu conhecimento de estudos de análises sobre big data, uma coisa que sempre me veio a mente foi o estudo de casos para a manutenção e melhoria dos nossos sistemas de saúde atuais. 
 
-Ambientes hospitalares necessitam de melhores formas de controle do ambiente hospitalar, desde equipamentos hospitalares, até monitoramento dos pacientes, com o objetivo de diminuir as fatalidades e sequelas, devido à problemas derivados dos quadros clínicos de cada um.
+Ambientes hospitalares necessitam de melhores formas de controle do ambiente, desde equipamentos, até monitoramento dos pacientes, com o objetivo de diminuir as fatalidades e sequelas, devido à problemas derivados dos quadros clínicos de cada um.
 
 ### Descrição do problema
-Minha proposta de projeto baseia-se em analisar informações de pacientes cardíacos, cujo sofreram um ataque cardíaco. A Partir dos dados recolhidos dos pacientes, deveremos analisar qual é o risco de que um novo paciente possa vir à óbito, e com isso, aumentar a observação dele e tomar medidas preventivas para que tal incidente não ocorra.
+Minha proposta de projeto baseia-se em analisar informações de pacientes cardíacos, cujo sofreram um ataque cardíaco. A Partir dos dados recolhidos dos pacientes e utilizando modelos preditivos de aprendizagem supervisionada, deveremos analisar qual é o risco de que um novo paciente possa vir à óbito, e com isso, aumentar a observação dele e tomar medidas preventivas para que tal incidente não ocorra.
 
 ### Conjuntos de dados e entradas
 Os dados que estou utilizando foram obtidos através do site de Machine Learning da Universidade da California em Irvine (UCI).
@@ -25,22 +25,24 @@ Com o dataset acima citado, irei primeiramente validar quais registros estão ap
 
 Após isso, verificarei via gráfico, quais são as idades em que as pessoas que sofreram um ataque cardíaco vieram a óbito e as que sobreviveram, para podermos ter uma noção da faixa etária mais vulnerável.
 
-Também treinarei alguns modelos preditivos para ver qual é o mais eficiente para a nossa situação. Após esta etapa, pretendo realizar uma checagem para ver se todos os atributos que nós estamos verificando são imprescindiveis para realizar uma predição com um score elevado.
+Também treinarei alguns modelos preditivos de aprendizado supervisionado, para ver qual é o mais eficiente para a nossa situação. Após esta etapa, pretendo realizar uma checagem para ver se todos os atributos que nós estamos verificando são imprescindiveis para realizar uma predição com um score elevado.
 
 ### Modelo de referência (benchmark)
 
 Utilizarei alguns modelos para testar a eficiência deles através do score e do tempo gasto para realizar o treino, o teste e a predição.
 
 Dentre os modelos, utilizarei os algoritmos de:
-- Support Vector Machines
-- KNNeighbors
-- Linear Regression
-- Naive bayess
-- Gradient descendente.
+- Support Vector Machines (SVM)
+- K-N Neighbors 
+- Naive bayes
+
+Também utilizarei o modelo de Gradiente descendente (GridSeach) para tuning do modelo escolhido.
 
 ### Métricas de avaliação
 
 Avaliarei qual é o melhor método preditivo através da comparação dos scores alcançados por cada um. O que possuir o score mais elevado e com um tempo de treino e testes adequado, será o escolhido.
+
+Uma vez que nosso modelo é de classificação, utilizarei o método de f1-score para validar a precisão de cada modelo.
 
 ### Design do projeto
 
