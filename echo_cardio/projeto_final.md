@@ -18,7 +18,6 @@ Com a gravidade de um problema no coração, será possível que nós tenhamos u
 ### Descrição do problema
 
 Mediante as questões acima, resolvi abordar o tema de problemas cardíacos.
-Uma vez analisando dados sobre problemas cardíacos, verei uma forma de 
 
 Entrando na área de problemas cardíacos, nós sabemos que existem diversas patologias e síndromes que agem no sistema cardiovascular das pessoas, o que acarreta em problemas no bem-viver e saúde, debilitando o paciente e até podendo traze-lo à óbito.
 
@@ -101,7 +100,7 @@ Age at heart attack: Idade do paciente ao sofrer o ataque cardíaco.
 
 Pericardial effusion (ou efusão pericárdica) : Compressão do coração causada pela coleta de líquido no saco que envolve o coração.
 
-Fractional Shortening (ou fração de encurtamento):  Representa a redução percentual do diâmetro cavidade do ventrículo querdo durante a ejeção ventricular máxima.
+Fractional Shortening (ou fração de encurtamento):  Representa a redução percentual do diâmetro cavidade do ventrículo esquerdo durante a ejeção ventricular máxima.
 
 Epss (E point to septal separation): É a distância entre o ponto E em diástole e o septo. Ele é um indicador de aumento do volume ventricular esquerdo.
 
@@ -146,6 +145,28 @@ Os algoritmos que eu escolhi foram:
 - Naive Bayes
 - K-N Vizinhos Próximos (K-N Neighbors)
 
+Motivos das escolhas:
+
+- Naive Bayes: 
+
+        Prós: Por ser um algoritmo fácil de ser preparado para o treino e também por ser um algoritmo rápido.
+
+         Contras: Ele não é eficaz quando é necessário fazer predições utilizando 2 critérios. Ex.: Ao utiliza-lo em um sistema de busca, caso um usuário procure por ataque cardíaco, o modelo irá retornar registros sobre ataques e sobre cardíacos, não sobre ataques-cardíacos.
+
+- Support Vector Machines (SVM): 
+
+        Prós: Por ser um algoritmo simples e com boa performance em cenários lineares.
+
+        Contras: Não é tão eficiente com grandes quantidades de dados.
+
+- K-N Vizinhos próximos: 
+    
+        Prós: Por não precisar de treinamento e é bem eficiente para uma massa de dados pequena.
+
+        Contras: Ele é um pouco lento na predição.
+
+
+Tais modelos foram escolhidos com base na simplicidade e também no tamanho do dataset.
 
 No decorrer do processo de criação dos modelos, utilizarei também técnicas de cross-validation para facilitar o uso dos dados.
 
@@ -222,6 +243,23 @@ Resolvi então realizar o tuning em cima do algoritmo de Support Vector Machines
 
 Para isso, eu utilizei o algoritmo de GridSearch, para chegar a um tuning ideal do algoritmo de SVM no nosso dataset:
 
+Os atributos de tuning utilizados foram: Kernel, C e Gamma.
+
+- Kernel: São funções utilizadas para transformar os vetores originais, projetand eles em um espaço dimensional elevado, de onde ficará mais fácil de serem separados linearmente. 
+
+   Tipos de função Kernel que utilizaremos:
+   RBF (Radial Basis Function);
+   Linear;
+   Poly (Polinomial);
+
+- C: O parâmetro C informa ao modelo de Support Vector Machines quanto você deseja evitar classificar erroneamente cada exemplo de treinamento.
+    Valores que utilizaremos: 0.001; 0.01. 0.1; 1; 10;
+
+- Gamma: O Parâmetro Gamma determina a amplitude da função de kernel, que não é influenciada pela direção, e sim, somente pela distancia. 
+    Valores que utilizaremos: 0.001; 0.01. 0.1; 1;
+
+Abaixo está o resultado do grid search com algumas variações dos atributos:
+
 ![fig 7](https://raw.githubusercontent.com/gtgsantos/Ucity-mlearning/master/echo_cardio/img/gridSearch.png)
 
 
@@ -274,6 +312,7 @@ JUNIOR, Wilson M. Título: Manual De Ecocardiografia. Editora Manole
 
 OTTO; Scwaegler; Freeman. Título: Ecocardiografia guia essencial. Editora Elseviser
 
+BONACCORSO, G. (2017) Machine Learning Algorithms(página 120) , Editora Packt
 
 Capítulo 04 - Avaliação da Função, Ventricular. Disponível em: <http://www.bibliomed.com.br/bibliomed/books/livro3/cap/cap04.htm>. Acesso em: 8 maio 2018.
 
